@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opay Rwanda - Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .payment-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #4CAF50;
+        }
+
+        .instructions {
+            text-align: left;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .step {
+            margin-bottom: 10px;
+        }
+
+        .payment-info {
+            margin-top: 20px;
+            background-color: #f0f8ff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .whatsapp-button {
+            margin-top: 10px;
+            padding: 12px;
+            width: 100%;
+            background-color: #25D366;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+        }
+
+        .copy-code-button {
+            margin-top: 15px;
+            padding: 12px;
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .copy-code-button:hover {
+            background-color: #0056b3;
+        }
+
+        .instructions p {
+            font-size: 16px;
+        }
+
+        .instructions span {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Payment Instructions Page -->
+    <div class="payment-container">
+        <h2>Payment Instructions</h2>
+
+        <!-- Payment Steps -->
+        <div class="instructions">
+            <p class="step">1. Dial <strong id="paymentCode">*182*8*1*1467222*300#</strong> on your mobile phone to initiate the payment.</p>
+            <p class="step">2. After payment , the ceo will help you to get more subscribers,likes and followers .</p>
+            <p class="step">3. After making the payment, take a screenshot of the confirmation page.</p>
+            <p class="step">4. Go to WhatsApp and send the screenshot to the CEO's number: <span>0795539489</span>.</p>
+            <p class="step">5. In the WhatsApp message, include the <span>Username</span> you registered with.</p>
+        </div>
+
+        <!-- Copy Payment Code Button -->
+        <button class="copy-code-button" onclick="copyPaymentCode()">Copy Payment Code</button>
+
+        <!-- Payment Info Section -->
+        <div class="payment-info">
+            <p>Payment Amount: <strong>300 RWF</strong></p>
+            <p>Make sure to complete the transaction via MomoPay.</p>
+        </div>
+
+        <!-- WhatsApp Redirect Button -->
+        <div class="button-container">
+            <button onclick="redirectToWhatsapp()">Complete Payment</button>
+        </div>
+    </div>
+
+    <script>
+        // Retrieve the registered username from localStorage
+        const username = localStorage.getItem('username');
+
+        // Redirect to WhatsApp with a pre-filled message
+        function redirectToWhatsapp() {
+            const message = `Hello, I just completed the payment of 300 RWF. My username is: ${username}`;
+            const whatsappURL = `https://wa.me/250795539489?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        // Function to copy the payment code to the clipboard
+        function copyPaymentCode() {
+            const paymentCode = document.getElementById('paymentCode').textContent;
+            navigator.clipboard.writeText(paymentCode).then(() => {
+                alert('Payment code copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+
+</body>
+</html>
